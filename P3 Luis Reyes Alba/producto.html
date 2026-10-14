@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitShop | Proteína de Chocolate</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="pagina-producto">
+    <nav class="navegacion"><a href="index.html">← Volver al catálogo</a></nav>
+    <section class="detalle">
+      <p class="subtitulo">Examples/Product Detail Page</p>
+      <header class="detalle-marca">FitShop</header>
+      <div class="ficha">
+        <img class="foto-grande" src="proteina.png" alt="Bote de proteína de chocolate">
+        <div class="informacion">
+          <h1>Proteína de Chocolate</h1>
+          <div class="precio">70€</div>
+          <p class="descripcion">Proteína aislada de suero sabor chocolate, diseñada para una recuperación completa y una mezcla suave después de cada entrenamiento.</p>
+          <div class="datos">
+            <div><strong>25 g</strong><span>Proteína por porción</span></div>
+            <div><strong>2 kg</strong><span>Contenido neto</span></div>
+            <div><strong>60</strong><span>Porciones aprox.</span></div>
+          </div>
+          <h2>Información útil</h2>
+          <p class="beneficio"><strong>Rápida absorción</strong><span>Ideal después de entrenar.</span></p>
+          <p class="beneficio"><strong>Fórmula limpia</strong><span>Baja en azúcar, sin gluten.</span></p>
+          <p class="beneficio"><strong>Uso recomendado</strong><span>Mezcla una medida con agua.</span></p>
+          <label class="etiqueta" for="cantidad">Cantidad</label>
+          <div class="acciones">
+            <div class="contador"><button type="button" id="menos" aria-label="Restar una unidad">−</button><output id="cantidad">1</output><button type="button" id="mas" aria-label="Sumar una unidad">+</button></div>
+            <a class="boton-rojo" id="comprar" href="checkout.html">Comprar</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    const cantidad = document.querySelector('#cantidad');
+    document.querySelector('#menos').onclick = () => cantidad.textContent = Math.max(1, Number(cantidad.textContent) - 1);
+    document.querySelector('#mas').onclick = () => cantidad.textContent = Number(cantidad.textContent) + 1;
+    document.querySelector('#comprar').onclick = () => localStorage.setItem('cantidadFitshop', cantidad.textContent);
+  </script>
+</body>
+</html>
