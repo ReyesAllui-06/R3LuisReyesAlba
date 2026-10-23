@@ -10,7 +10,6 @@
   <main class="pagina-producto">
     <nav class="navegacion"><a href="index.html">← Volver al catálogo</a></nav>
     <section class="detalle">
-      <p class="subtitulo">Examples/Product Detail Page</p>
       <header class="detalle-marca">FitShop</header>
       <div class="ficha">
         <img class="foto-grande" src="proteina.png" alt="Bote de proteína de chocolate">
@@ -38,9 +37,15 @@
   </main>
   <script>
     const cantidad = document.querySelector('#cantidad');
-    document.querySelector('#menos').onclick = () => cantidad.textContent = Math.max(1, Number(cantidad.textContent) - 1);
-    document.querySelector('#mas').onclick = () => cantidad.textContent = Number(cantidad.textContent) + 1;
-    document.querySelector('#comprar').onclick = () => localStorage.setItem('cantidadFitshop', cantidad.textContent);
+    document.querySelector('#menos').onclick = () => {
+      cantidad.textContent = Math.max(1, Number(cantidad.textContent) - 1);
+    };
+    document.querySelector('#mas').onclick = () => {
+      cantidad.textContent = Number(cantidad.textContent) + 1;
+    };
+    document.querySelector('#comprar').onclick = () => {
+      localStorage.setItem('cantidadFitshop', cantidad.textContent);
+    };
   </script>
 </body>
 </html>
