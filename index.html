@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitShop | Catálogo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="presentacion">
+    <div>
+      <img src="Logotipo deportivo FitShop con mancuerna.png" alt="Logo FitShop" class="logo-cabecera">
+      <p class="marca">FitShop</p>
+      <h1>Mejora tu rendimiento con FitShop</h1>
+      <p class="descripcion-presentacion">Encuentra productos de nutrición deportiva para acompañarte antes y después de cada entrenamiento.</p>
+      <a class="boton-rojo" href="#productos">Ver productos</a>
+    </div>
+    <img class="imagen-presentacion" src="proteina.png" alt="Bote de proteína de chocolate FitShop">
+  </header>
+  <main class="catalogo">
+    <section class="productos" id="productos">
+      <h2>Productos</h2>
+      <div class="escaparate" id="escaparate">
+        <!-- Los productos se inyectan aquí con JavaScript -->
+      </div>
+    </section>
+  </main>
+  <footer class="pie-pagina">© 2026 FitShop · Nutrición para cada entrenamiento</footer>
+  <script src="productos.js"></script>
+  <script>
+    const contenedor = document.querySelector('#escaparate');
+    PRODUCTOS.forEach(producto => {
+      const tarjeta = document.createElement('article');
+      tarjeta.className = 'mini-producto';
+      tarjeta.innerHTML = `
+        <a href="producto.html?id=${producto.id}" aria-label="Ver detalles de ${producto.nombre}">
+          <img src="${producto.imagen}" alt="${producto.nombre}">
+        </a>
+        <p><a href="producto.html?id=${producto.id}">${producto.nombre}</a></p>
+        <strong>${producto.precio}€</strong>
+        <small>${producto.detalle}</small>
+      `;
+      contenedor.appendChild(tarjeta);
+    });
+  </script>
+</body>
+</html>

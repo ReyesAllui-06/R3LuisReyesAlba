@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Finaliza tu compra | FitShop</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="checkout">
+    <nav class="navegacion"><a id="volver-producto" href="#">← Volver al producto</a></nav>
+    <header class="detalle-marca">
+      <img src="Logotipo deportivo FitShop con mancuerna.png" alt="Logo FitShop" class="logo-cabecera">
+      <div>FitShop</div>
+    </header>
+    <h1>Finaliza tu compra</h1>
+    <div class="checkout-columnas">
+      <div class="formulario">
+        <section>
+          <h2>Datos de contacto</h2>
+          <div class="campos dos">
+            <label>Correo electrónico<input type="email" required></label>
+            <label>Teléfono<input type="tel" required></label>
+          </div>
+        </section>
+        <section>
+          <h2>Dirección de envío</h2>
+          <p class="ayuda">Ingresa la dirección donde quieres recibir tu producto.</p>
+          <div class="campos dos">
+            <label>Nombre<input required></label>
+            <label>Apellidos<input required></label>
+          </div>
+          <div class="campos"><label>Dirección<input required></label></div>
+          <div class="campos"><label>Referencias (opcional)<input></label></div>
+          <div class="campos tres">
+            <label>Ciudad<input required></label>
+            <label>Provincia<input required></label>
+            <label>Código postal<input required></label>
+          </div>
+          <div class="campos"><label>País / Región<input required></label></div>
+        </section>
+        <section>
+          <h2>Método de entrega</h2>
+          <label class="opcion-entrega activa"><input type="radio" name="entrega" value="0" checked><span><strong>Envío estándar</strong><small>Entrega estimada en 2–4 días hábiles</small></span><b>Gratis</b></label>
+          <label class="opcion-entrega"><input type="radio" name="entrega" value="8"><span><strong>Envío exprés</strong><small>Entrega el siguiente día hábil</small></span><b>8€</b></label>
+        </section>
+        <section>
+          <h2>Método de pago</h2>
+          <div class="tarjeta"><span>◉</span><div><strong>Tarjeta de crédito o débito</strong><small>Visa, Mastercard</small></div><b>••••</b></div>
+          <div class="campos"><label>Número de tarjeta<input inputmode="numeric"></label></div>
+          <div class="campos dos"><label>Vencimiento<input placeholder="MM / AA"></label><label>CVV<input inputmode="numeric"></label></div>
+          <div class="campos"><label>Nombre en la tarjeta<input></label></div>
+        </section>
+      </div>
+      <aside class="resumen">
+        <div class="resumen-titulo"><h2>Resumen del pedido</h2><span id="numero-productos">1 producto</span></div>
+        <div class="linea-producto">
+          <img id="resumen-imagen" src="proteina.png" alt="">
+          <div>
+            <strong id="resumen-nombre">Producto</strong>
+            <small id="resumen-detalle"></small>
+            <small id="unidades">Cantidad: 1</small>
+          </div>
+          <b id="precio-producto">70€</b>
+        </div>
+        <div class="desglose">
+          <div><span>Subtotal</span><span id="subtotal">70€</span></div>
+          <div><span>Envío <small id="tipo-envio">estándar</small></span><span id="precio-envio" class="gratis">Gratis</span></div>
+          <div><span>Impuestos</span><span>Incluidos</span></div>
+        </div>
+        <div class="total"><strong>Total</strong><b id="total">70€</b></div>
+        <button type="button" class="boton-rojo confirmar" onclick="alert('Esta es una demostración visual. No se ha realizado ningún cobro.')">Confirmar compra</button>
+      </aside>
+    </div>
+  </main>
+  <script src="productos.js"></script>
+  <script>
+    const productoGuardado = localStorage.getItem('productoFitshop');
+    const producto = productoGuardado ? JSON.parse(productoGuardado) : {
+      id: 'proteina-chocolate',
+      nombre: 'Producto',
+      precio: 70,
+      imagen: 'proteina.png',
+      neto: '',
+      detalle: ''
+    };
+    const cantidadGuardada = Math.max(1, Number(localStorage.getItem('cantidadFitshop')) || 1);
+
+    document.querySelector('#resumen-imagen').src = producto.imagen;
+    document.querySelector('#resumen-imagen').alt = producto.nombre;
+    document.querySelector('#resumen-nombre').textContent = producto.nombre;
+    document.querySelector('#resumen-detalle').textContent = producto.detalle;
+    document.querySelector('#unidades').textContent = 'Cantidad: ' + cantidadGuardada;
+    document.querySelector('#numero-productos').textContent = cantidadGuardada + (cantidadGuardada === 1 ? ' producto' : ' productos');
+
+    const precioUnitario = Number(producto.precio);
+    document.querySelector('#precio-producto').textContent = (precioUnitario * cantidadGuardada) + '€';
+    document.querySelector('#subtotal').textContent = (precioUnitario * cantidadGuardada) + '€';
+
+    const opciones = document.querySelectorAll('input[name="entrega"]');
+    function actualizar() {
+      const coste = Number(document.querySelector('input[name="entrega"]:checked').value);
+      document.querySelectorAll('.opcion-entrega').forEach(el => el.classList.toggle('activa', el.querySelector('input').checked));
+      document.querySelector('#tipo-envio').textContent = coste ? 'exprés' : 'estándar';
+      document.querySelector('#precio-envio').textContent = coste ? coste + '€' : 'Gratis';
+      document.querySelector('#precio-envio').classList.toggle('gratis', !coste);
+      document.querySelector('#total').textContent = (precioUnitario * cantidadGuardada + coste) + '€';
+    }
+    opciones.forEach(el => el.addEventListener('change', actualizar));
+    actualizar();
+
+    document.querySelector('#volver-producto').href = 'producto.html?id=' + producto.id;
+  </script>
+</body>
+</html>
