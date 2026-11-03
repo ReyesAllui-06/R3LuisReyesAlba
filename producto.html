@@ -11,7 +11,7 @@
 </head>
 <body>
   <main class="pagina-producto">
-    <nav class="navegacion"><a href="index.html">← Volver al catálogo</a></nav>
+    <nav class="navegacion"><a href="tienda.html">← Volver a la tienda</a></nav>
     <section class="detalle">
       <header class="detalle-marca">
     <img src="Logotipo deportivo FitShop con mancuerna.png" alt="Logo FitShop" class="logo-cabecera">
@@ -25,7 +25,7 @@
           <p class="descripcion" id="descripcion-producto">Descripción del producto.</p>
           <div class="datos">
             <div><strong id="dato-neto">2 kg</strong><span>Contenido neto</span></div>
-            <div><strong id="dato-porcion">25 g</strong><span>Proteína por porción</span></div>
+            <div><strong id="dato-porcion">25 g</strong><span>Por porción</span></div>
             <div><strong id="dato-porciones">60</strong><span>Porciones aprox.</span></div>
           </div>
           <p class="detalle-corto" id="detalle-corto"></p>
@@ -47,6 +47,7 @@
     const producto = buscarProducto(getParam('id'));
 
     document.title = `FitShop | ${producto.nombre}`;
+    document.querySelector('#foto-producto').src = producto.imagen;
     document.querySelector('#foto-producto').alt = producto.nombre;
     document.querySelector('#nombre-producto').textContent = producto.nombre;
     document.querySelector('#precio-producto').textContent = producto.precio + '€';
