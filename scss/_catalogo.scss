@@ -1,0 +1,112 @@
+// Catalogo de la tienda, secciones de inicio y pie de pagina
+@use 'variables' as *;
+
+.catalogo {
+    max-width: $ancho-maximo;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.productos h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.escaparate {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.mini-producto {
+    border: 1px solid $borde-suave;
+    padding: 15px;
+    background: $blanco;
+}
+
+.mini-producto img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    background: $fondo-suave;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.mini-producto p {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 10px 0 5px 0;
+}
+
+.mini-producto strong {
+    display: block;
+    color: $rojo-texto;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.mini-producto small {
+    color: $gris-claro;
+    font-size: 14px;
+    display: block;
+}
+
+.pie-pagina {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid $borde;
+    color: $gris-claro;
+    font-size: 14px;
+}
+
+// Secciones de la pagina de inicio
+
+.seccion {
+    max-width: $ancho-maximo;
+    margin: 0 auto;
+    padding: 40px 20px;
+    border-top: 1px solid $borde;
+}
+
+.seccion h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.seccion > p {
+    color: $gris;
+    max-width: 700px;
+    margin-bottom: 20px;
+}
+
+.seccion-tienda {
+    background: $fondo-suave;
+}
+
+.seccion-nosotros > p {
+    font-size: 17px;
+}
+
+.video-contenedor {
+    aspect-ratio: 16 / 9;
+    max-width: 800px;
+    background: $fondo-suave;
+    border: 1px solid $borde-suave;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-contenedor video,
+.video-contenedor iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-pendiente {
+    color: $gris-claro;
+    font-weight: bold;
+    margin: 0;
+}

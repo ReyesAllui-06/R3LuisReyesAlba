@@ -1,0 +1,47 @@
+// Estilos base: body, enlaces, botones generales
+@use 'variables' as *;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: $blanco;
+    color: $texto;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.boton-rojo {
+    background-color: $rojo;
+    color: $blanco;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.boton-rojo:hover {
+    background-color: $rojo-oscuro;
+}

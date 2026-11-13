@@ -1,0 +1,102 @@
+// ===== PRACTICA 7: ANIMACIONES CON CSS =====
+// Aqui estan el slider de imagenes y las animaciones de la pagina.
+@use 'variables' as *;
+
+// --- 1) KEYFRAMES ---
+// Un @keyframes describe como cambia un elemento desde el inicio (0%)
+// hasta el final (100%). El navegador dibuja los pasos intermedios solo.
+
+// Aparecer desde abajo (se usa al cargar la pagina)
+@keyframes aparecer {
+    from {
+        opacity: 0;              // invisible
+        transform: translateY(20px); // 20px mas abajo
+    }
+    to {
+        opacity: 1;              // visible
+        transform: translateY(0);    // en su sitio
+    }
+}
+
+// Latido suave para llamar la atencion en un boton
+@keyframes latido {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.06); } // crece un poco a la mitad
+    100% { transform: scale(1); }
+}
+
+// Mover el carrusel: enseña cada imagen y luego pasa a la siguiente
+// Con 3 imagenes cada una se ve un tercio del tiempo.
+@keyframes pasar-slider {
+    0%   { transform: translateX(0); }      // imagen 1
+    33%  { transform: translateX(0); }
+    38%  { transform: translateX(-100%); }  // imagen 2
+    66%  { transform: translateX(-100%); }
+    71%  { transform: translateX(-200%); }  // imagen 3
+    96%  { transform: translateX(-200%); }
+    100% { transform: translateX(0); }      // vuelve a la 1
+}
+
+// --- 2) SLIDER DE IMAGENES ---
+// El marco esconde lo que se sale (overflow:hidden).
+// Dentro hay una tira ancha que se mueve de lado con la animacion.
+.slider {
+    max-width: $ancho-maximo;
+    margin: 20px auto;
+    overflow: hidden;      // esconde las imagenes que estan fuera
+    border: 1px solid $borde-suave;
+    border-radius: 8px;
+}
+
+.slider-tira {
+    display: flex;
+    width: 300%;           // 3 imagenes, cada una ocupa 100%
+    animation: pasar-slider 15s infinite; // 15s en bucle
+}
+
+.slider-tira img {
+    width: 100%;           // cada imagen ocupa un tercio de la tira
+    height: 320px;
+    object-fit: cover;
+    display: block;
+}
+
+// Si pasas el raton por encima, el slider se pausa
+.slider:hover .slider-tira {
+    animation-play-state: paused;
+}
+
+// --- 3) ANIMACIONES EN ELEMENTOS DE LA PAGINA ---
+
+// Las tarjetas de producto aparecen suavemente al cargar la tienda
+.mini-producto {
+    animation: aparecer 0.6s ease both;
+    transition: transform 0.2s, box-shadow 0.2s; // cambio suave al pasar el raton
+}
+
+// Al pasar el raton la tarjeta sube un poco y gana sombra
+.mini-producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+// El boton rojo late despacio para invitar a pulsarlo
+.boton-rojo {
+    animation: latido 2.5s ease-in-out infinite;
+}
+
+// Al pasar el raton deja de latir y se agranda un poco
+.boton-rojo:hover {
+    animation-play-state: paused;
+    transform: scale(1.05);
+    transition: transform 0.2s;
+}
+
+// Respeta a quien prefiere no ver movimiento (accesibilidad)
+@media (prefers-reduced-motion: reduce) {
+    .slider-tira,
+    .mini-producto,
+    .boton-rojo {
+        animation: none;
+    }
+}

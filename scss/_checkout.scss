@@ -1,0 +1,235 @@
+// Pasarela de pago (checkout)
+@use 'variables' as *;
+
+.checkout {
+    max-width: $ancho-maximo;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.checkout h1 {
+    font-size: 30px;
+    margin-bottom: 25px;
+}
+
+.checkout-columnas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.formulario {
+    flex: 2;
+    min-width: 300px;
+}
+
+.resumen {
+    flex: 1;
+    min-width: 280px;
+    border: 1px solid $borde;
+    padding: 20px;
+    background: $blanco;
+}
+
+.formulario section {
+    margin-bottom: 25px;
+}
+
+.formulario h2,
+.resumen h2 {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.ayuda {
+    color: $gris-claro;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.campos {
+    margin-bottom: 15px;
+}
+
+.campos label {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.campos input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    font-size: 15px;
+}
+
+.campos.dos {
+    display: flex;
+    gap: 15px;
+}
+
+.campos.dos label {
+    flex: 1;
+}
+
+.campos.tres {
+    display: flex;
+    gap: 15px;
+}
+
+.campos.tres label {
+    flex: 1;
+}
+
+.opcion-entrega {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #dddddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.opcion-entrega.activa {
+    background: $fondo-suave;
+    border-color: #aaaaaa;
+}
+
+.opcion-entrega input {
+    margin: 0;
+    width: auto;
+}
+
+.opcion-entrega span {
+    flex: 1;
+}
+
+.opcion-entrega strong {
+    display: block;
+}
+
+.opcion-entrega small {
+    display: block;
+    color: $gris-claro;
+    font-size: 13px;
+    margin-top: 2px;
+}
+
+.tarjeta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #dddddd;
+    padding: 10px;
+    background: $fondo-suave;
+    margin-bottom: 15px;
+}
+
+.tarjeta div {
+    flex: 1;
+}
+
+.tarjeta strong {
+    display: block;
+}
+
+.tarjeta small {
+    display: block;
+    color: $gris-claro;
+    font-size: 13px;
+    margin-top: 2px;
+}
+
+.resumen-titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+}
+
+.resumen-titulo h2 {
+    margin: 0;
+}
+
+.resumen-titulo span {
+    color: $gris-claro;
+    font-size: 13px;
+}
+
+.linea-producto {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.linea-producto img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border: 1px solid $borde;
+}
+
+.linea-producto div {
+    flex: 1;
+}
+
+.linea-producto strong {
+    display: block;
+    font-size: 14px;
+}
+
+.linea-producto small {
+    display: block;
+    color: $gris-claro;
+    font-size: 13px;
+    margin-top: 2px;
+}
+
+.linea-producto b {
+    white-space: nowrap;
+}
+
+.desglose {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.desglose > div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.gratis {
+    color: $verde;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 25px 0;
+    padding-top: 15px;
+    border-top: 1px solid $borde;
+}
+
+.confirmar {
+    width: 100%;
+    background-color: $rojo;
+    color: $blanco;
+    border: none;
+    padding: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.confirmar:hover {
+    background-color: $rojo-oscuro;
+}

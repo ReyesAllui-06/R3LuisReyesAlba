@@ -171,6 +171,45 @@ const PRODUCTOS = [
   }
 ];
 
+// ===== PRACTICA 4: NOVEDADES =====
+// Productos nuevos que se muestran en la pagina de novedades.
+const NOVEDADES = [
+  {
+    id: 'pack-volumen',
+    nombre: 'Pack Volumen',
+    precio: 99,
+    antes: 130,
+    imagen: 'Imagen de ChatGPT 23 oct 2026, 20_39_27-2.png',
+    etiqueta: 'Oferta',
+    descripcion: 'Pack para tus días de volumen: proteína de chocolate más un ganador de masa a un precio especial.',
+    incluye: ['Proteína de Chocolate (2 kg)', 'Mass Gainer Cookies & Cream (3 kg)']
+  },
+  {
+    id: 'pack-definicion',
+    nombre: 'Pack Definición',
+    precio: 69,
+    antes: 90,
+    imagen: 'Imagen de ChatGPT 23 oct 2026, 20_39_33-9.png',
+    etiqueta: 'Nuevo',
+    descripcion: 'Todo lo que necesitas para tu etapa de definición en un solo pack.',
+    incluye: ['Thermo Cut Fat Burner', 'BCAA 2:1:1 Sabor Limón', 'Multivitamínico Sport']
+  },
+  {
+    id: 'proteina-fresa',
+    nombre: 'Proteína de Fresa (Edición limitada)',
+    precio: 68,
+    antes: 68,
+    imagen: 'Imagen de ChatGPT 23 oct 2026, 20_39_26-1.png',
+    etiqueta: 'Edición limitada',
+    descripcion: 'Nuevo sabor fresa de nuestra proteína aislada. Solo por tiempo limitado.',
+    incluye: ['Proteína aislada sabor fresa (2 kg)']
+  }
+];
+
+function buscarNovedad(id) {
+  return NOVEDADES.find(p => p.id === id) || NOVEDADES[0];
+}
+
 function buscarProducto(id) {
   return PRODUCTOS.find(p => p.id === id) || PRODUCTOS[0];
 }

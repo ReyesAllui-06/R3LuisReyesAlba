@@ -1,0 +1,145 @@
+// Pagina de detalle del producto
+@use 'variables' as *;
+
+.pagina-producto {
+    max-width: $ancho-maximo;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.navegacion {
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.detalle-marca {
+    font-weight: bold;
+    font-size: 16px;
+    border-bottom: 1px solid $borde;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.ficha {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.foto-grande {
+    width: 400px;
+    height: 400px;
+    object-fit: contain;
+    border: 1px solid $borde;
+    background: $blanco;
+}
+
+.informacion {
+    flex: 1;
+    min-width: 250px;
+}
+
+.informacion h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.precio {
+    color: $rojo-texto;
+    font-size: 24px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.detalle-corto {
+    color: $gris;
+    font-size: 14px;
+    margin-bottom: 15px;
+    max-width: 500px;
+}
+
+.descripcion {
+    color: $gris;
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+
+.datos {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.datos div {
+    min-width: 100px;
+}
+
+.datos strong {
+    display: block;
+    font-size: 18px;
+}
+
+.datos span {
+    display: block;
+    color: $gris-claro;
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+.informacion h2 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.beneficio {
+    margin-bottom: 10px;
+}
+
+.beneficio strong {
+    display: block;
+}
+
+.beneficio span {
+    display: block;
+    color: $gris-claro;
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+.etiqueta {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 20px 0 5px 0;
+}
+
+.acciones {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.contador {
+    border: 1px solid #dddddd;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contador button {
+    background: $blanco;
+    border: none;
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+}
+
+.contador output {
+    min-width: 20px;
+    text-align: center;
+}

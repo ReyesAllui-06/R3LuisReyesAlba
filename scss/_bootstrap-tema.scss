@@ -1,0 +1,28 @@
+// ===== PRACTICA 4: TEMA DE BOOTSTRAP =====
+// Clases propias con el color rojo de FitShop para usarlas junto a Bootstrap.
+// Asi los botones y badges de Bootstrap quedan con los colores de la marca.
+@use 'variables' as *;
+
+// Boton rojo de FitShop (sustituye al btn-primary azul de Bootstrap)
+.btn-fitshop {
+    background-color: $rojo;
+    color: $blanco;
+    border: none;
+}
+
+.btn-fitshop:hover,
+.btn-fitshop:focus {
+    background-color: $rojo-oscuro;
+    color: $blanco;
+}
+
+// Etiqueta (badge) con el rojo de la marca
+.bg-fitshop {
+    background-color: $rojo !important;
+    color: $blanco;
+}
+
+// Texto en rojo de la marca
+.text-fitshop {
+    color: $rojo-texto !important;
+}

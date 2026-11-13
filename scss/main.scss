@@ -1,0 +1,12 @@
+// Archivo principal de SASS.
+// Junta todos los parciales en un unico CSS final (styles.css).
+// Asi el CSS queda separado por zonas pero el navegador carga un solo fichero.
+
+@use 'variables' as *;   // colores y medidas
+@use 'base';             // body, enlaces, botones
+@use 'cabecera';         // navbar, cabeceras, presentacion
+@use 'catalogo';         // tienda e inicio
+@use 'producto';         // detalle de producto
+@use 'checkout';         // pasarela de pago
+@use 'bootstrap-tema';   // Practica 4: colores de marca para Bootstrap
+@use 'animaciones';      // Practica 7: slider y animaciones
