@@ -12,44 +12,142 @@
     margin-bottom: 20px;
 }
 
+// Rejilla de productos: 2 columnas en movil y tablet, 3 en portatil, 4 en pantallas grandes
 .escaparate {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
 }
 
+@media (min-width: 992px) {
+    .escaparate {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1200px) {
+    .escaparate {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+// Tarjeta de producto: fondo blanco, esquinas redondeadas y sombra suave
+// Flex en columna + altura 100% para que todas las tarjetas de una fila midan igual
 .mini-producto {
-    border: 1px solid $borde-suave;
-    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 14px;
     background: $blanco;
+    border: 1px solid $borde;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.mini-producto img {
-    width: 100%;
-    height: 200px;
-    object-fit: contain;
-    background: $fondo-suave;
+// Al pasar el raton la tarjeta se eleva y gana sombra
+.mini-producto:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+// Contenedor cuadrado de la imagen, centrado y con fondo gris muy claro
+.mini-producto-imagen {
     display: block;
-    margin-bottom: 10px;
+    aspect-ratio: 1 / 1;
+    background: $fondo-suave;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 14px;
 }
 
-.mini-producto p {
-    font-weight: bold;
-    font-size: 18px;
-    margin: 10px 0 5px 0;
+.mini-producto-imagen img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 14px;
+    object-fit: contain;     // nunca recorta el producto
+    transition: transform 0.3s ease;
 }
 
-.mini-producto strong {
+// Zoom suave de la imagen al pasar el raton por la tarjeta
+.mini-producto:hover .mini-producto-imagen img {
+    transform: scale(1.06);
+}
+
+// Nombre en seminegrita, limitado a dos lineas
+.mini-producto-nombre {
+    margin: 0 0 8px 0;
+    min-height: calc(1.3em * 2); // reserva dos lineas: el precio queda alineado
+    font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.mini-producto-nombre a:hover {
+    color: $rojo-texto;
+    text-decoration: none;
+}
+
+.mini-producto-precio {
     display: block;
     color: $rojo-texto;
-    font-size: 18px;
-    margin-bottom: 5px;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 6px;
 }
 
 .mini-producto small {
-    color: $gris-claro;
-    font-size: 14px;
     display: block;
+    flex: 1;                 // empuja el boton al fondo de la tarjeta
+    color: $gris-claro;
+    font-size: 13px;
+    line-height: 1.45;
+    margin-bottom: 14px;
+}
+
+// Boton de ancho completo al final de cada tarjeta
+.mini-producto-boton {
+    display: block;
+    margin-top: auto;
+    padding: 11px 14px;
+    background: $rojo;
+    color: $blanco;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mini-producto-boton:hover {
+    background: $rojo-oscuro;
+    color: $blanco;
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(255, 56, 62, 0.3);
+}
+
+// Quien prefiere menos movimiento no ve elevaciones ni zooms
+@media (prefers-reduced-motion: reduce) {
+    .mini-producto,
+    .mini-producto:hover {
+        transform: none;
+        transition: none;
+    }
+
+    .mini-producto-imagen img,
+    .mini-producto:hover .mini-producto-imagen img {
+        transform: none;
+        transition: none;
+    }
 }
 
 .pie-pagina {

@@ -115,14 +115,8 @@
 // de la tarjeta (translateY) sigue funcionando al terminar.
 .mini-producto {
     animation: aparecer 0.6s ease backwards;
-    transition: transform 0.2s, box-shadow 0.2s; // cambio suave al pasar el raton
 }
-
-// Al pasar el raton la tarjeta sube un poco y gana sombra
-.mini-producto:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
+// El hover de la tarjeta (elevacion y sombra) esta en _catalogo.scss
 
 // Las tarjetas aparecen una detras de otra (efecto cascada)
 @for $i from 2 through 8 {

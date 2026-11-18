@@ -37,12 +37,13 @@
       const tarjeta = document.createElement('article');
       tarjeta.className = 'mini-producto';
       tarjeta.innerHTML = `
-        <a href="producto.html?id=${producto.id}" aria-label="Ver detalles de ${producto.nombre}">
+        <a class="mini-producto-imagen" href="producto.html?id=${producto.id}" aria-label="Ver detalles de ${producto.nombre}">
           <img src="${producto.imagen}" alt="${producto.nombre}">
         </a>
-        <p><a href="producto.html?id=${producto.id}">${producto.nombre}</a></p>
-        <strong>${producto.precio}€</strong>
+        <p class="mini-producto-nombre"><a href="producto.html?id=${producto.id}">${producto.nombre}</a></p>
+        <strong class="mini-producto-precio">${producto.precio}€</strong>
         <small>${producto.detalle}</small>
+        <a class="mini-producto-boton" href="producto.html?id=${producto.id}">Ver producto</a>
       `;
       contenedor.appendChild(tarjeta);
     });
