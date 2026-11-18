@@ -1,0 +1,82 @@
+// Pie de pagina: fondo negro, marca destacada y enlaces en columnas
+@use 'variables' as *;
+
+.pie-pagina {
+    padding: 56px max(24px, calc((100% - var(--ancho-max)) / 2 + 24px)) 24px;
+    background: $negro;
+    color: #bdbdbd;
+    font-size: 15px;
+}
+
+.pie-contenido {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 32px;
+    align-items: center;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.pie-marca {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: $blanco;
+    font-family: $fuente-titulo;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.pie-marca:hover {
+    color: $blanco;
+    text-decoration: none;
+}
+
+.pie-marca img {
+    width: 56px;
+    height: 56px;
+    padding: 4px;
+    object-fit: contain;
+    background: $blanco;
+    border-radius: 12px;
+}
+
+.pie-enlaces ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 12px 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.pie-enlaces a {
+    color: #d4d4d4;
+    font-weight: 600;
+    transition: color 0.25s ease;
+}
+
+.pie-enlaces a:hover {
+    color: $acento;
+    text-decoration: none;
+}
+
+.pie-copy {
+    margin: 24px 0 0 0;
+    color: #8f8f8f;
+    font-size: 14px;
+    text-align: center;
+}
+
+@media (max-width: 767.98px) {
+    .pie-contenido {
+        grid-template-columns: 1fr;
+    }
+
+    .pie-enlaces ul {
+        justify-content: flex-start;
+    }
+}

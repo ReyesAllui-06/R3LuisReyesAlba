@@ -1,15 +1,29 @@
-// Colores principales de FitShop (se usan en todo el sitio)
-$rojo: #ff383e;
-$rojo-oscuro: #e92f35;
-$rojo-texto: #f03535;
-$texto: #262323;
-$gris: #666666;
-$gris-claro: #777777;
-$borde: #eeeeee;
-$borde-suave: #e6e6e6;
-$fondo-suave: #f7f7f7;
-$blanco: #ffffff;
-$verde: #387b52;
+// Sistema de diseno de FitShop: paleta, tipografia, formas y medidas.
+// Se usa en todos los parciales. Las variables CSS (:root) estan en _base.scss.
 
-// Medidas que se repiten
-$ancho-maximo: 1100px;
+// --- Paleta ---
+$negro: #151515;          // cabecera, pie y secciones destacadas
+$negro-2: #242424;        // negro secundario (bandas y fondos oscuros)
+$acento: #bef264;         // verde lima: botones principales y detalles
+$acento-hover: #a3e635;   // verde lima mas intenso para hover
+$blanco: #ffffff;
+$fondo-suave: #f5f5f5;    // gris muy claro para fondos de contenido
+$gris: #4a4a4a;           // parrafos secundarios
+$gris-claro: #737373;     // textos secundarios pequenos
+$texto: #151515;
+$borde: #e5e5e5;
+$borde-suave: #ebebeb;
+$verde: #387b52;          // estado correcto (envio gratis)
+
+// --- Tipografia ---
+$fuente-titulo: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+$fuente-texto: 'Inter', Arial, sans-serif;
+
+// --- Formas y sombras ---
+$radio: 16px;
+$radio-sm: 10px;
+$sombra-suave: 0 2px 10px rgba(0, 0, 0, 0.06);
+$sombra-elevada: 0 12px 28px rgba(0, 0, 0, 0.14);
+
+// --- Medidas ---
+$ancho-maximo: 1200px;

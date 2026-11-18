@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FitShop | Inicio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -19,16 +22,26 @@
     </ul>
   </nav>
 
-  <!-- PRACTICA 7: Slider de imagenes con animacion CSS (ver _animaciones.scss) -->
-  <div class="slider">
-    <div class="slider-tira">
-      <img src="img/fitshop_cabecera_deportistas.png" alt="Deportistas FitShop">
-      <img src="img/fitshop_cabecera_productos.png" alt="Nuestros suplementos">
-      <img src="img/proteina.png" alt="Proteína de chocolate">
-    </div>
-  </div>
-
   <main>
+    <!-- PRACTICA 7: portada con slider de imagenes con animacion CSS (ver _animaciones.scss) -->
+    <section class="portada" id="tienda">
+      <div class="portada-contenido">
+        <div class="portada-texto">
+          <h2 class="portada-etiqueta">Tienda</h2>
+          <h1>Nutrición para cada entrenamiento</h1>
+          <p>Explora todos nuestros suplementos: proteínas, creatina, pre-entreno y BCAA.</p>
+          <a class="boton-principal" href="tienda.html">Ver todos los productos</a>
+        </div>
+        <div class="slider">
+          <div class="slider-tira">
+            <img src="img/fitshop_cabecera_deportistas.png" alt="Deportistas FitShop">
+            <img src="img/fitshop_cabecera_productos.png" alt="Nuestros suplementos">
+            <img src="img/proteina.png" alt="Proteína de chocolate">
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="seccion seccion-video">
       <h2>Mira nuestro video</h2>
       <div class="video-contenedor">
@@ -38,19 +51,32 @@
       </div>
     </section>
 
-    <section class="seccion seccion-tienda" id="tienda">
-      <h2>Tienda</h2>
-      <p>Explora todos nuestros suplementos: proteínas, creatina, pre-entreno y BCAA.</p>
-      <a class="boton-rojo" href="tienda.html">Ver todos los productos</a>
-    </section>
-
     <section class="seccion seccion-nosotros" id="sobre-nosotros">
-      <h2>Sobre nosotros</h2>
-      <p>Somos una empresa nueva dedicada a la venta de suplementación deportiva de buena calidad y a buen precio.</p>
-      <p>Creemos que entrenar bien no tiene por qué ser caro. Por eso seleccionamos productos con fórmulas limpias y precios accesibles, para que cada persona pueda avanzar hacia sus objetivos.</p>
+      <div class="nosotros-texto">
+        <h2>Sobre nosotros</h2>
+        <p>Somos una empresa nueva dedicada a la venta de suplementación deportiva de buena calidad y a buen precio.</p>
+        <p>Creemos que entrenar bien no tiene por qué ser caro. Por eso seleccionamos productos con fórmulas limpias y precios accesibles, para que cada persona pueda avanzar hacia sus objetivos.</p>
+      </div>
+      <div class="nosotros-imagen">
+        <img src="img/logo-fitshop.png" alt="Logotipo de FitShop">
+      </div>
     </section>
   </main>
 
-  <footer class="pie-pagina">© 2026 FitShop · Nutrición para cada entrenamiento</footer>
+  <footer class="pie-pagina">
+    <div class="pie-contenido">
+      <a class="pie-marca" href="index.html"><img src="img/logo-fitshop.png" alt="Logo FitShop"><span>FitShop</span></a>
+      <nav class="pie-enlaces" aria-label="Enlaces del pie de página">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="tienda.html">Tienda</a></li>
+          <li><a href="novedades.html">Novedades</a></li>
+          <li><a href="index.html#sobre-nosotros">Sobre nosotros</a></li>
+          <li><a href="login.html">Entrar</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="pie-copy">© 2026 FitShop · Nutrición para cada entrenamiento</p>
+  </footer>
 </body>
 </html>

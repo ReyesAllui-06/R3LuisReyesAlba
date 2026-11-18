@@ -1,0 +1,95 @@
+// Seccion Novedades: cabecera oscura y tarjetas de novedad
+@use 'variables' as *;
+
+.cabecera-seccion {
+    padding: 64px max(24px, calc((100% - var(--ancho-max)) / 2 + 24px));
+    background: $negro-2;
+    color: $blanco;
+}
+
+.cabecera-seccion h1 {
+    margin: 0 0 12px 0;
+    color: $blanco;
+    font-size: 60px;
+    text-transform: uppercase;
+}
+
+.cabecera-seccion p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 18px;
+}
+
+.pagina-novedades {
+    max-width: $ancho-maximo;
+    margin: 0 auto;
+    padding: 56px 24px 88px 24px;
+}
+
+.novedad {
+    overflow: hidden;
+    background: $blanco;
+    border: 1px solid $borde;
+    border-radius: $radio;
+    box-shadow: $sombra-suave;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.novedad:hover {
+    transform: translateY(-4px);
+    box-shadow: $sombra-elevada;
+}
+
+.novedad-imagen {
+    height: 240px;
+    padding: 24px;
+    object-fit: contain;
+    background: $fondo-suave;
+    border-bottom: 1px solid $borde;
+}
+
+.novedad .badge {
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-family: $fuente-titulo;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.novedad .card-title {
+    margin-bottom: 10px;
+    font-family: $fuente-titulo;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.05;
+    text-transform: uppercase;
+}
+
+.novedad .card-text {
+    color: $gris-claro;
+    font-size: 15px;
+}
+
+.novedad-precio {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 16px 0 20px 0;
+}
+
+.novedad-precio strong {
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.novedad .btn-fitshop {
+    padding: 14px;
+}
+
+@media (max-width: 767.98px) {
+    .cabecera-seccion h1 {
+        font-size: 44px;
+    }
+}

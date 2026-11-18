@@ -62,7 +62,7 @@
     width: 100%;
     padding: 8px 10px;
     border: 1px solid #cccccc;
-    border-radius: 3px;
+    border-radius: $radio-sm;
     font-size: 15px;
 }
 
@@ -221,15 +221,16 @@
 
 .confirmar {
     width: 100%;
-    background-color: $rojo;
-    color: $blanco;
+    background-color: $acento;
+    color: $negro;
     border: none;
-    padding: 12px;
-    font-weight: bold;
+    border-radius: $radio-sm;
+    padding: 14px;
+    font-weight: 700;
     font-size: 16px;
     cursor: pointer;
 }
 
 .confirmar:hover {
-    background-color: $rojo-oscuro;
+    background-color: $acento-hover;
 }

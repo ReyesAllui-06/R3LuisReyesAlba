@@ -1,18 +1,49 @@
-// Estilos base: body, enlaces, botones generales
+// Estilos base: variables CSS, tipografia, enlaces y boton principal
 @use 'variables' as *;
+
+// Variables CSS: la paleta y las medidas se pueden usar en cualquier estilo
+:root {
+    --color-negro: #{$negro};
+    --color-negro-2: #{$negro-2};
+    --color-acento: #{$acento};
+    --color-acento-hover: #{$acento-hover};
+    --color-blanco: #{$blanco};
+    --color-fondo: #{$fondo-suave};
+    --color-texto: #{$texto};
+    --color-texto-secundario: #{$gris-claro};
+    --color-borde: #{$borde};
+    --fuente-titulo: #{$fuente-titulo};
+    --fuente-texto: #{$fuente-texto};
+    --radio: #{$radio};
+    --radio-sm: #{$radio-sm};
+    --ancho-max: #{$ancho-maximo};
+}
 
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: $fuente-texto;
     margin: 0;
     padding: 0;
     background: $blanco;
     color: $texto;
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+// Titulos con la tipografia condensada de la marca
+h1,
+h2,
+h3,
+h4 {
+    font-family: $fuente-titulo;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: 0.01em;
+    color: $texto;
 }
 
 a {
@@ -33,15 +64,47 @@ button {
     cursor: pointer;
 }
 
-.boton-rojo {
-    background-color: $rojo;
-    color: $blanco;
-    border: none;
-    padding: 10px 20px;
-    font-weight: bold;
-    cursor: pointer;
+// Foco visible para teclado (negro sobre fondo claro, lima sobre fondo oscuro)
+:focus-visible {
+    outline: 3px solid $negro;
+    outline-offset: 2px;
 }
 
-.boton-rojo:hover {
-    background-color: $rojo-oscuro;
+.barra-navegacion :focus-visible,
+.portada :focus-visible,
+.pie-pagina :focus-visible {
+    outline-color: $acento;
+}
+
+// Controles nativos (radios, casillas) en negro de marca
+input[type="radio"],
+input[type="checkbox"] {
+    accent-color: $negro;
+}
+
+// Boton principal de FitShop: lima con texto negro
+.boton-principal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: $acento;
+    color: $negro;
+    border: none;
+    border-radius: $radio-sm;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.boton-principal:hover {
+    background: $acento-hover;
+    color: $negro;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(190, 242, 100, 0.35);
 }

@@ -1,28 +1,48 @@
-// ===== PRACTICA 4: TEMA DE BOOTSTRAP =====
-// Clases propias con el color rojo de FitShop para usarlas junto a Bootstrap.
-// Asi los botones y badges de Bootstrap quedan con los colores de la marca.
+// ===== TEMA DE BOOTSTRAP CON LA PALETA DE FITSHOP =====
+// Clases propias para usar junto a Bootstrap con los colores de la marca.
 @use 'variables' as *;
 
-// Boton rojo de FitShop (sustituye al btn-primary azul de Bootstrap)
+// Boton principal de FitShop: lima con texto negro
 .btn-fitshop {
-    background-color: $rojo;
-    color: $blanco;
+    background-color: $acento;
+    color: $negro;
     border: none;
+    border-radius: $radio-sm;
+    padding: 12px 20px;
+    transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .btn-fitshop:hover,
 .btn-fitshop:focus {
-    background-color: $rojo-oscuro;
-    color: $blanco;
+    background-color: $acento-hover;
+    color: $negro;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(190, 242, 100, 0.35);
 }
 
-// Etiqueta (badge) con el rojo de la marca
+// Etiqueta (badge) en lima con texto negro
 .bg-fitshop {
-    background-color: $rojo !important;
-    color: $blanco;
+    background-color: $acento !important;
+    color: $negro;
 }
 
-// Texto en rojo de la marca
+// Texto destacado en negro de marca
 .text-fitshop {
-    color: $rojo-texto !important;
+    color: $negro !important;
+}
+
+// Tarjetas de Bootstrap con esquinas de la marca
+.card {
+    border-radius: $radio;
+}
+
+// Campos de formulario: foco en negro con halo lima
+.form-control:focus {
+    border-color: $negro;
+    box-shadow: 0 0 0 0.2rem rgba(190, 242, 100, 0.55);
+}
+
+.form-check-input:checked {
+    background-color: $negro;
+    border-color: $negro;
 }

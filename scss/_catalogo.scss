@@ -1,22 +1,23 @@
-// Catalogo de la tienda, secciones de inicio y pie de pagina
+// Catalogo de la tienda y tarjetas de producto
 @use 'variables' as *;
 
 .catalogo {
     max-width: $ancho-maximo;
     margin: 0 auto;
-    padding: 20px;
+    padding: 40px 24px 88px 24px;
 }
 
 .productos h2 {
-    font-size: 26px;
-    margin-bottom: 20px;
+    font-size: 44px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
 }
 
-// Rejilla de productos: 2 columnas en movil y tablet, 3 en portatil, 4 en pantallas grandes
+// Rejilla: 2 columnas en movil y tablet, 3 en portatil, 4 en pantalla grande
 .escaparate {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 22px;
+    gap: 24px;
 }
 
 @media (min-width: 992px) {
@@ -31,34 +32,34 @@
     }
 }
 
-// Tarjeta de producto: fondo blanco, esquinas redondeadas y sombra suave
-// Flex en columna + altura 100% para que todas las tarjetas de una fila midan igual
+// Tarjeta: fondo blanco, esquinas redondeadas y sombra suave.
+// Flex en columna + altura 100%: todas las tarjetas de una fila miden igual.
 .mini-producto {
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 14px;
+    padding: 16px;
     background: $blanco;
     border: 1px solid $borde;
-    border-radius: 14px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border-radius: $radio;
+    box-shadow: $sombra-suave;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 // Al pasar el raton la tarjeta se eleva y gana sombra
 .mini-producto:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: $sombra-elevada;
 }
 
-// Contenedor cuadrado de la imagen, centrado y con fondo gris muy claro
+// Contenedor cuadrado de la imagen, con fondo gris muy claro
 .mini-producto-imagen {
     display: block;
     aspect-ratio: 1 / 1;
     background: $fondo-suave;
-    border-radius: 10px;
+    border-radius: $radio-sm;
     overflow: hidden;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 }
 
 .mini-producto-imagen img {
@@ -66,7 +67,7 @@
     width: 100%;
     height: 100%;
     margin: 0;
-    padding: 14px;
+    padding: 16px;
     object-fit: contain;     // nunca recorta el producto
     transition: transform 0.3s ease;
 }
@@ -80,7 +81,7 @@
 .mini-producto-nombre {
     margin: 0 0 8px 0;
     min-height: calc(1.3em * 2); // reserva dos lineas: el precio queda alineado
-    font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    font-family: $fuente-texto;
     font-size: 17px;
     font-weight: 600;
     line-height: 1.3;
@@ -90,18 +91,13 @@
     overflow: hidden;
 }
 
-.mini-producto-nombre a:hover {
-    color: $rojo-texto;
-    text-decoration: none;
-}
-
 .mini-producto-precio {
     display: block;
-    color: $rojo-texto;
+    color: $negro;
     font-size: 24px;
     font-weight: 800;
     line-height: 1.2;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 .mini-producto small {
@@ -110,29 +106,29 @@
     color: $gris-claro;
     font-size: 13px;
     line-height: 1.45;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 }
 
-// Boton de ancho completo al final de cada tarjeta
+// Boton de ancho completo: negro, y lima al pasar el raton
 .mini-producto-boton {
     display: block;
     margin-top: auto;
-    padding: 11px 14px;
-    background: $rojo;
+    padding: 12px 14px;
+    background: $negro;
     color: $blanco;
-    border-radius: 10px;
+    border-radius: $radio-sm;
     font-weight: 700;
     font-size: 15px;
     text-align: center;
-    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .mini-producto-boton:hover {
-    background: $rojo-oscuro;
-    color: $blanco;
+    background: $acento;
+    color: $negro;
     text-decoration: none;
     transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(255, 56, 62, 0.3);
+    box-shadow: 0 6px 14px rgba(190, 242, 100, 0.45);
 }
 
 // Quien prefiere menos movimiento no ve elevaciones ni zooms
@@ -148,63 +144,4 @@
         transform: none;
         transition: none;
     }
-}
-
-.pie-pagina {
-    text-align: center;
-    padding: 20px;
-    border-top: 1px solid $borde;
-    color: $gris-claro;
-    font-size: 14px;
-}
-
-// Secciones de la pagina de inicio
-
-.seccion {
-    max-width: $ancho-maximo;
-    margin: 0 auto;
-    padding: 40px 20px;
-    border-top: 1px solid $borde;
-}
-
-.seccion h2 {
-    font-size: 26px;
-    margin-bottom: 20px;
-}
-
-.seccion > p {
-    color: $gris;
-    max-width: 700px;
-    margin-bottom: 20px;
-}
-
-.seccion-tienda {
-    background: $fondo-suave;
-}
-
-.seccion-nosotros > p {
-    font-size: 17px;
-}
-
-.video-contenedor {
-    aspect-ratio: 16 / 9;
-    max-width: 800px;
-    background: $fondo-suave;
-    border: 1px solid $borde-suave;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.video-contenedor video,
-.video-contenedor iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.video-pendiente {
-    color: $gris-claro;
-    font-weight: bold;
-    margin: 0;
 }

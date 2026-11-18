@@ -1,43 +1,41 @@
-// ===== PRACTICA 7: ANIMACIONES CON CSS =====
-// Aqui estan el slider de imagenes y las animaciones de la pagina.
+// ===== ANIMACIONES CON CSS =====
+// Slider, entradas de pagina, cabecera y microinteracciones.
+// Todas se desactivan con prefers-reduced-motion (al final del fichero).
 @use 'variables' as *;
 
 // --- 1) KEYFRAMES ---
-// Un @keyframes describe como cambia un elemento desde el inicio (0%)
-// hasta el final (100%). El navegador dibuja los pasos intermedios solo.
 
-// Aparecer desde abajo (se usa al cargar la pagina)
+// Aparecer desde abajo
 @keyframes aparecer {
     from {
-        opacity: 0;              // invisible
-        transform: translateY(20px); // 20px mas abajo
+        opacity: 0;
+        transform: translateY(20px);
     }
     to {
-        opacity: 1;              // visible
-        transform: translateY(0);    // en su sitio
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-// Latido suave para llamar la atencion en un boton
+// Latido suave para llamar la atencion en el boton principal
 @keyframes latido {
-    0%   { transform: scale(1); }
-    50%  { transform: scale(1.06); } // crece un poco a la mitad
+    0%,
     100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
 }
 
-// Mover el carrusel: enseña cada imagen y luego pasa a la siguiente
-// Con 3 imagenes cada una se ve un tercio del tiempo.
+// Carrusel: cada imagen se ve un tercio del tiempo
 @keyframes pasar-slider {
-    0%   { transform: translateX(0); }      // imagen 1
-    33%  { transform: translateX(0); }
-    38%  { transform: translateX(-100%); }  // imagen 2
-    66%  { transform: translateX(-100%); }
-    71%  { transform: translateX(-200%); }  // imagen 3
-    96%  { transform: translateX(-200%); }
-    100% { transform: translateX(0); }      // vuelve a la 1
+    0% { transform: translateX(0); }
+    33% { transform: translateX(0); }
+    38% { transform: translateX(-100%); }
+    66% { transform: translateX(-100%); }
+    71% { transform: translateX(-200%); }
+    96% { transform: translateX(-200%); }
+    100% { transform: translateX(0); }
 }
 
-// Baja desde arriba (la barra de navegacion al entrar)
+// Baja desde arriba (barra de navegacion)
 @keyframes deslizar-abajo {
     from {
         opacity: 0;
@@ -49,7 +47,7 @@
     }
 }
 
-// Entra desde la izquierda (foto del producto, formulario)
+// Entra desde la izquierda
 @keyframes entrar-izquierda {
     from {
         opacity: 0;
@@ -61,7 +59,7 @@
     }
 }
 
-// Entra desde la derecha (informacion del producto, resumen)
+// Entra desde la derecha
 @keyframes entrar-derecha {
     from {
         opacity: 0;
@@ -76,28 +74,32 @@
 // Franja de luz que cruza el boton al pasar el raton
 @keyframes brillo {
     from { transform: translateX(-100%); }
-    to   { transform: translateX(100%); }
+    to { transform: translateX(100%); }
+}
+
+// Sombra de la cabecera al hacer scroll
+@keyframes sombra-cabecera {
+    from { box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
+    to { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); }
 }
 
 // --- 2) SLIDER DE IMAGENES ---
-// El marco esconde lo que se sale (overflow:hidden).
-// Dentro hay una tira ancha que se mueve de lado con la animacion.
 .slider {
     max-width: $ancho-maximo;
     margin: 20px auto;
-    overflow: hidden;      // esconde las imagenes que estan fuera
+    overflow: hidden;
     border: 1px solid $borde-suave;
     border-radius: 8px;
 }
 
 .slider-tira {
     display: flex;
-    width: 300%;           // 3 imagenes, cada una ocupa 100%
-    animation: pasar-slider 15s infinite; // 15s en bucle
+    width: 300%;
+    animation: pasar-slider 15s infinite;
 }
 
 .slider-tira img {
-    width: 100%;           // cada imagen ocupa un tercio de la tira
+    width: 100%;
     height: 320px;
     object-fit: cover;
     display: block;
@@ -108,75 +110,33 @@
     animation-play-state: paused;
 }
 
-// --- 3) ANIMACIONES EN ELEMENTOS DE LA PAGINA ---
-
-// Las tarjetas de producto aparecen suavemente al cargar la tienda.
-// "backwards" solo aplica la animacion durante su duracion, asi el hover
-// de la tarjeta (translateY) sigue funcionando al terminar.
-.mini-producto {
-    animation: aparecer 0.6s ease backwards;
-}
-// El hover de la tarjeta (elevacion y sombra) esta en _catalogo.scss
-
-// Las tarjetas aparecen una detras de otra (efecto cascada)
-@for $i from 2 through 8 {
-    .escaparate .mini-producto:nth-child(#{$i}) {
-        animation-delay: ($i - 1) * 0.1s;
-    }
-}
-
-// El boton rojo late despacio para invitar a pulsarlo
-.boton-rojo {
-    animation: latido 2.5s ease-in-out infinite;
-    position: relative;
-    overflow: hidden;      // recorta la franja de brillo
-}
-
-// Al pasar el raton deja de latir y se agranda un poco
-.boton-rojo:hover {
-    animation-play-state: paused;
-    transform: scale(1.05);
-    transition: transform 0.2s;
-}
-
-// Franja de luz que cruza el boton en cada pasada del raton
-.boton-rojo::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.45), transparent);
-    transform: translateX(-100%);
-    pointer-events: none;
-}
-
-.boton-rojo:hover::before {
-    animation: brillo 0.6s ease;
-}
-
-// Barra de navegacion: baja al cargar cualquier pagina
+// --- 3) CABECERA ---
 .barra-navegacion {
     animation: deslizar-abajo 0.5s ease-out both;
 }
 
-// Subrayado que crece desde la izquierda al pasar el raton
-.enlaces-nav a {
-    position: relative;
-
-    &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -4px;
-        width: 100%;
-        height: 2px;
-        background: #f03535;
-        transform: scaleX(0);
-        transform-origin: left center;
-        transition: transform 0.3s ease;
+// Con scroll-driven animations la sombra aparece al bajar la pagina
+@supports (animation-timeline: scroll()) {
+    .barra-navegacion {
+        animation: deslizar-abajo 0.5s ease-out both, sombra-cabecera linear both;
+        animation-timeline: auto, scroll(root);
+        animation-range: normal, 0px 120px;
     }
+}
+
+// Subrayado lima que crece desde la izquierda en el enlace activo
+.enlaces-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 3px;
+    background: $acento;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.3s ease;
 }
 
 .enlaces-nav a:hover::after,
@@ -190,16 +150,66 @@
 }
 
 .marca-nav:hover .logo-nav {
-    transform: rotate(-12deg) scale(1.1);
+    transform: rotate(-12deg) scale(1.08);
 }
 
-// Entradas de la pagina de producto
+// --- 4) PORTADA ---
+.portada-texto {
+    animation: entrar-izquierda 0.8s ease-out backwards;
+}
+
+.portada .slider {
+    animation: entrar-derecha 0.8s ease-out backwards 0.15s;
+}
+
+// --- 5) TARJETAS DE PRODUCTO ---
+// "backwards" solo aplica la animacion durante su duracion: el hover sigue funcionando
+.mini-producto {
+    animation: aparecer 0.6s ease backwards;
+}
+
+// Las tarjetas aparecen una detras de otra
+@for $i from 2 through 8 {
+    .escaparate .mini-producto:nth-child(#{$i}) {
+        animation-delay: ($i - 1) * 0.1s;
+    }
+}
+
+// --- 6) BOTON PRINCIPAL ---
+.boton-principal {
+    animation: latido 2.5s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+// Al pasar el raton deja de latir: el elevado del hover se ve bien
+.boton-principal:hover {
+    animation: none;
+}
+
+// Franja de luz que cruza el boton
+.boton-principal::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    transform: translateX(-100%);
+    pointer-events: none;
+}
+
+.boton-principal:hover::before {
+    animation: brillo 0.6s ease;
+}
+
+// --- 7) PAGINA DE PRODUCTO Y PAGO ---
 .foto-grande {
     animation: entrar-izquierda 0.7s ease-out backwards;
     transition: transform 0.4s ease;
 }
 
-// La foto crece un poco al pasar el raton
 .foto-grande:hover {
     transform: scale(1.04);
 }
@@ -215,14 +225,13 @@
 
 .contador button:hover {
     transform: scale(1.15);
-    background-color: #f7f7f7;
+    background-color: $fondo-suave;
 }
 
 .contador button:active {
     transform: scale(0.9);
 }
 
-// Entradas de la pagina de pago
 .formulario {
     animation: entrar-izquierda 0.6s ease-out backwards;
 }
@@ -241,27 +250,27 @@
     border-color: #aaaaaa;
 }
 
-// Campos del formulario: borde rojo y halo al escribir
+// Campos del formulario: borde negro y halo lima al escribir
 .campos input {
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .campos input:focus {
-    border-color: #f03535;
-    box-shadow: 0 0 0 3px rgba(240, 53, 53, 0.2);
+    border-color: $negro;
+    box-shadow: 0 0 0 3px rgba(190, 242, 100, 0.55);
 }
 
-// Boton de confirmar: se eleva con sombra al pasar el raton
+// Boton de confirmar: se eleva con sombra lima al pasar el raton
 .confirmar {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .confirmar:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(255, 56, 62, 0.35);
+    box-shadow: 0 6px 14px rgba(190, 242, 100, 0.5);
 }
 
-// Secciones: aparecen al hacer scroll (solo si el navegador lo soporta)
+// --- 8) SECCIONES AL HACER SCROLL (solo si el navegador lo soporta) ---
 @supports (animation-timeline: view()) {
     .seccion {
         animation: aparecer linear both;
@@ -270,21 +279,24 @@
     }
 }
 
-// Respeta a quien prefiere no ver movimiento (accesibilidad)
+// --- 9) ACCESIBILIDAD ---
+// Respeta a quien prefiere no ver movimiento
 @media (prefers-reduced-motion: reduce) {
     .slider-tira,
     .mini-producto,
-    .boton-rojo,
+    .boton-principal,
     .barra-navegacion,
     .foto-grande,
     .informacion,
     .formulario,
     .resumen,
-    .seccion {
+    .seccion,
+    .portada-texto,
+    .portada .slider {
         animation: none;
     }
 
-    .boton-rojo::before {
+    .boton-principal::before {
         display: none;
     }
 }
