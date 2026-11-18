@@ -704,6 +704,44 @@ button {
     transform: translateX(0);
   }
 }
+@keyframes deslizar-abajo {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes entrar-izquierda {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes entrar-derecha {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes brillo {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
 .slider {
   max-width: 1100px;
   margin: 20px auto;
@@ -730,7 +768,7 @@ button {
 }
 
 .mini-producto {
-  animation: aparecer 0.6s ease both;
+  animation: aparecer 0.6s ease backwards;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -739,8 +777,38 @@ button {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
+.escaparate .mini-producto:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.escaparate .mini-producto:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.escaparate .mini-producto:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.escaparate .mini-producto:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.escaparate .mini-producto:nth-child(6) {
+  animation-delay: 0.5s;
+}
+
+.escaparate .mini-producto:nth-child(7) {
+  animation-delay: 0.6s;
+}
+
+.escaparate .mini-producto:nth-child(8) {
+  animation-delay: 0.7s;
+}
+
 .boton-rojo {
   animation: latido 2.5s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
 }
 
 .boton-rojo:hover {
@@ -749,10 +817,136 @@ button {
   transition: transform 0.2s;
 }
 
+.boton-rojo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+.boton-rojo:hover::before {
+  animation: brillo 0.6s ease;
+}
+
+.barra-navegacion {
+  animation: deslizar-abajo 0.5s ease-out both;
+}
+
+.enlaces-nav a {
+  position: relative;
+}
+.enlaces-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: #f03535;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.3s ease;
+}
+
+.enlaces-nav a:hover::after,
+.enlaces-nav a[aria-current=page]::after {
+  transform: scaleX(1);
+}
+
+.logo-nav {
+  transition: transform 0.3s ease;
+}
+
+.marca-nav:hover .logo-nav {
+  transform: rotate(-12deg) scale(1.1);
+}
+
+.foto-grande {
+  animation: entrar-izquierda 0.7s ease-out backwards;
+  transition: transform 0.4s ease;
+}
+
+.foto-grande:hover {
+  transform: scale(1.04);
+}
+
+.informacion {
+  animation: entrar-derecha 0.7s ease-out backwards 0.15s;
+}
+
+.contador button {
+  transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+.contador button:hover {
+  transform: scale(1.15);
+  background-color: #f7f7f7;
+}
+
+.contador button:active {
+  transform: scale(0.9);
+}
+
+.formulario {
+  animation: entrar-izquierda 0.6s ease-out backwards;
+}
+
+.resumen {
+  animation: entrar-derecha 0.6s ease-out backwards 0.2s;
+}
+
+.opcion-entrega {
+  transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.opcion-entrega:hover {
+  transform: translateX(4px);
+  border-color: #aaaaaa;
+}
+
+.campos input {
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.campos input:focus {
+  border-color: #f03535;
+  box-shadow: 0 0 0 3px rgba(240, 53, 53, 0.2);
+}
+
+.confirmar {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.confirmar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(255, 56, 62, 0.35);
+}
+
+@supports (animation-timeline: view()) {
+  .seccion {
+    animation: aparecer linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .slider-tira,
   .mini-producto,
-  .boton-rojo {
+  .boton-rojo,
+  .barra-navegacion,
+  .foto-grande,
+  .informacion,
+  .formulario,
+  .resumen,
+  .seccion {
     animation: none;
+  }
+  .boton-rojo::before {
+    display: none;
   }
 }
