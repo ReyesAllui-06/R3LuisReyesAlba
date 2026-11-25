@@ -1,5 +1,5 @@
 // ===== ANIMACIONES CON CSS =====
-// Slider, entradas de pagina, cabecera y microinteracciones.
+// Entradas de pagina, cabecera, carrusel, botones y microinteracciones.
 // Todas se desactivan con prefers-reduced-motion (al final del fichero).
 @use 'variables' as *;
 
@@ -22,17 +22,6 @@
     0%,
     100% { transform: scale(1); }
     50% { transform: scale(1.03); }
-}
-
-// Carrusel: cada imagen se ve un tercio del tiempo
-@keyframes pasar-slider {
-    0% { transform: translateX(0); }
-    33% { transform: translateX(0); }
-    38% { transform: translateX(-100%); }
-    66% { transform: translateX(-100%); }
-    71% { transform: translateX(-200%); }
-    96% { transform: translateX(-200%); }
-    100% { transform: translateX(0); }
 }
 
 // Baja desde arriba (barra de navegacion)
@@ -83,34 +72,7 @@
     to { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); }
 }
 
-// --- 2) SLIDER DE IMAGENES ---
-.slider {
-    max-width: $ancho-maximo;
-    margin: 20px auto;
-    overflow: hidden;
-    border: 1px solid $borde-suave;
-    border-radius: 8px;
-}
-
-.slider-tira {
-    display: flex;
-    width: 300%;
-    animation: pasar-slider 15s infinite;
-}
-
-.slider-tira img {
-    width: 100%;
-    height: 320px;
-    object-fit: cover;
-    display: block;
-}
-
-// Si pasas el raton por encima, el slider se pausa
-.slider:hover .slider-tira {
-    animation-play-state: paused;
-}
-
-// --- 3) CABECERA ---
+// --- 2) CABECERA ---
 .barra-navegacion {
     animation: deslizar-abajo 0.5s ease-out both;
 }
@@ -124,26 +86,6 @@
     }
 }
 
-// Subrayado lima que crece desde la izquierda en el enlace activo
-.enlaces-nav a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 100%;
-    height: 3px;
-    background: $acento;
-    border-radius: 2px;
-    transform: scaleX(0);
-    transform-origin: left center;
-    transition: transform 0.3s ease;
-}
-
-.enlaces-nav a:hover::after,
-.enlaces-nav a[aria-current="page"]::after {
-    transform: scaleX(1);
-}
-
 // El logo gira un poco al pasar el raton por la marca
 .logo-nav {
     transition: transform 0.3s ease;
@@ -153,16 +95,16 @@
     transform: rotate(-12deg) scale(1.08);
 }
 
-// --- 4) PORTADA ---
+// --- 3) PORTADA ---
 .portada-texto {
     animation: entrar-izquierda 0.8s ease-out backwards;
 }
 
-.portada .slider {
+.portada-carrusel {
     animation: entrar-derecha 0.8s ease-out backwards 0.15s;
 }
 
-// --- 5) TARJETAS DE PRODUCTO ---
+// --- 4) TARJETAS DE PRODUCTO ---
 // "backwards" solo aplica la animacion durante su duracion: el hover sigue funcionando
 .mini-producto {
     animation: aparecer 0.6s ease backwards;
@@ -175,7 +117,7 @@
     }
 }
 
-// --- 6) BOTON PRINCIPAL ---
+// --- 5) BOTON PRINCIPAL ---
 .boton-principal {
     animation: latido 2.5s ease-in-out infinite;
     position: relative;
@@ -204,7 +146,7 @@
     animation: brillo 0.6s ease;
 }
 
-// --- 7) PAGINA DE PRODUCTO Y PAGO ---
+// --- 6) PAGINA DE PRODUCTO Y PAGO ---
 .foto-grande {
     animation: entrar-izquierda 0.7s ease-out backwards;
     transition: transform 0.4s ease;
@@ -232,11 +174,11 @@
     transform: scale(0.9);
 }
 
-.formulario {
+.formulario-pago {
     animation: entrar-izquierda 0.6s ease-out backwards;
 }
 
-.resumen {
+.resumen-pedido {
     animation: entrar-derecha 0.6s ease-out backwards 0.2s;
 }
 
@@ -247,52 +189,30 @@
 
 .opcion-entrega:hover {
     transform: translateX(4px);
-    border-color: #aaaaaa;
 }
 
-// Campos del formulario: borde negro y halo lima al escribir
-.campos input {
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.campos input:focus {
-    border-color: $negro;
-    box-shadow: 0 0 0 3px rgba(190, 242, 100, 0.55);
-}
-
-// Boton de confirmar: se eleva con sombra lima al pasar el raton
-.confirmar {
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-}
-
-.confirmar:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(190, 242, 100, 0.5);
-}
-
-// --- 8) SECCIONES AL HACER SCROLL (solo si el navegador lo soporta) ---
+// --- 7) SECCIONES AL HACER SCROLL (solo si el navegador lo soporta) ---
 @supports (animation-timeline: view()) {
-    .seccion {
+    .bloque {
         animation: aparecer linear both;
         animation-timeline: view();
         animation-range: entry 0% cover 30%;
     }
 }
 
-// --- 9) ACCESIBILIDAD ---
+// --- 8) ACCESIBILIDAD ---
 // Respeta a quien prefiere no ver movimiento
 @media (prefers-reduced-motion: reduce) {
-    .slider-tira,
     .mini-producto,
     .boton-principal,
     .barra-navegacion,
     .foto-grande,
     .informacion,
-    .formulario,
-    .resumen,
-    .seccion,
+    .formulario-pago,
+    .resumen-pedido,
+    .bloque,
     .portada-texto,
-    .portada .slider {
+    .portada-carrusel {
         animation: none;
     }
 

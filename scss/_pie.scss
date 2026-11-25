@@ -2,7 +2,7 @@
 @use 'variables' as *;
 
 .pie-pagina {
-    padding: 56px max(24px, calc((100% - var(--ancho-max)) / 2 + 24px)) 24px;
+    padding: 56px 0 24px 0;
     background: $negro;
     color: #bdbdbd;
     font-size: 15px;

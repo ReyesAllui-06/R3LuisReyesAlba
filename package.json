@@ -1,0 +1,14 @@
+{
+  "name": "fitshop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Web de FitShop. Estilos en SASS compilados a css/styles.css con Bootstrap 5 y tema propio.",
+  "scripts": {
+    "css": "sass --load-path=node_modules --quiet-deps --style=expanded --no-source-map scss/main.scss css/styles.css",
+    "css:watch": "sass --load-path=node_modules --quiet-deps --style=expanded --no-source-map --watch scss/main.scss css/styles.css"
+  },
+  "devDependencies": {
+    "bootstrap": "5.3.3",
+    "sass": "1.108.2"
+  }
+}

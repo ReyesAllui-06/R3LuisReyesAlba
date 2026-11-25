@@ -1,14 +1,43 @@
 // Archivo principal de SASS.
-// Junta todos los parciales en un unico CSS final (css/styles.css).
+// Junta el tema de Bootstrap (con los colores de FitShop) y todos los parciales
+// en un unico CSS final: css/styles.css. Para recompilar: npm run css
 
-@use 'variables' as *;   // paleta, tipografia, formas y medidas
+// 1) Paleta, tipografia, formas y medidas de la marca
+@use 'variables' as *;
+
+// 2) Bootstrap 5 compilado desde su codigo fuente con las variables de FitShop.
+//    Al cargarlo sobrescribimos sus variables: colores principales, tipografias y radios.
+@use 'bootstrap/scss/bootstrap' with (
+  $primary: $acento,
+  $secondary: $gris-claro,
+  $dark: $negro,
+  $body-color: $texto,
+  $body-bg: $blanco,
+  $link-color: $negro,
+  $font-family-base: $fuente-texto,
+  $headings-font-family: $fuente-titulo,
+  $headings-font-weight: 800,
+  $border-radius: $radio-sm,
+  $border-radius-lg: $radio,
+  $btn-border-radius: $radio-sm,
+  $input-border-radius: $radio-sm,
+  $card-border-radius: $radio,
+  $modal-content-border-radius: $radio,
+  $input-focus-border-color: $negro,
+  $input-btn-focus-color: rgba($acento, 0.55),
+  $input-btn-focus-width: 0.2rem,
+  $carousel-indicator-active-bg: $acento
+);
+
+// 3) Estilos propios de FitShop, organizados por funcionalidad o zona de la pagina.
+//    Van despues de Bootstrap para poder sobrescribir sus componentes.
 @use 'base';             // variables CSS, tipografia, enlaces y boton principal
+@use 'bootstrap-tema';   // componentes de Bootstrap con el estilo de la marca
 @use 'cabecera';         // barra de navegacion y cabeceras con imagen
 @use 'catalogo';         // tarjetas de producto de la tienda
-@use 'portada';          // portada, video, sobre nosotros y titulos de seccion
+@use 'portada';          // portada con carrusel, secciones, video y sobre nosotros
 @use 'novedades';        // cabecera y tarjetas de novedades
 @use 'producto';         // detalle de producto
-@use 'checkout';         // pasarela de pago
+@use 'checkout';         // pasarela de pago con formularios de Bootstrap
 @use 'pie';              // pie de pagina
-@use 'bootstrap-tema';   // colores de marca para Bootstrap
-@use 'animaciones';      // slider y animaciones (van al final para poder sobrescribir)
+@use 'animaciones';      // animaciones (van al final para poder sobrescribir)
