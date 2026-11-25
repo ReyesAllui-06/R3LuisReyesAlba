@@ -26,6 +26,7 @@
           <li class="nav-item"><a class="nav-link" href="novedades.html">Novedades</a></li>
           <li class="nav-item"><a class="nav-link" href="index.html#sobre-nosotros">Sobre nosotros</a></li>
           <li class="nav-item"><a class="nav-link" href="login.html">Entrar</a></li>
+          <li class="nav-item"><a class="nav-link" href="carrito.html">Carrito <span class="badge rounded-pill bg-fitshop ms-1 d-none" data-contador-carrito>0</span></a></li>
         </ul>
       </div>
     </div>
@@ -51,7 +52,7 @@
           <label class="etiqueta" for="cantidad">Cantidad</label>
           <div class="acciones">
             <div class="contador"><button type="button" id="menos" aria-label="Restar una unidad">−</button><output id="cantidad">1</output><button type="button" id="mas" aria-label="Sumar una unidad">+</button></div>
-            <a class="boton-principal" id="comprar" href="#">Comprar</a>
+            <button type="button" class="boton-principal" id="anadir">Añadir al carrito</button>
           </div>
         </div>
       </div>
@@ -102,19 +103,14 @@
     document.querySelector('#mas').onclick = () => {
       cantidad.textContent = Number(cantidad.textContent) + 1;
     };
-    document.querySelector('#comprar').onclick = (e) => {
-      e.preventDefault();
-      localStorage.setItem('productoFitshop', JSON.stringify({
-        id: producto.id,
-        nombre: producto.nombre,
-        precio: producto.precio,
-        imagen: producto.imagen,
-        neto: producto.neto,
-        detalle: producto.detalle
-      }));
-      localStorage.setItem('cantidadFitshop', cantidad.textContent);
-      location.href = 'checkout.html';
+    // Añade al carrito la cantidad elegida y avisa con un toast
+    document.querySelector('#anadir').onclick = () => {
+      const unidades = Number(cantidad.textContent);
+      agregarAlCarrito(producto, unidades);
+      notificar(`${producto.nombre} añadido al carrito (${unidades} ${unidades === 1 ? 'unidad' : 'unidades'})`);
     };
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/carrito.js"></script>
 </body>
 </html>

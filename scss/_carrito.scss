@@ -1,0 +1,13 @@
+// Carrito de la compra: miniaturas de las lineas del carrito
+@use 'variables' as *;
+
+// Miniatura de cada producto en la lista del carrito
+.carrito-imagen {
+    width: 80px;
+    height: 80px;
+    padding: 6px;
+    object-fit: contain;
+    background: $fondo-suave;
+    border: 1px solid $borde;
+    border-radius: $radio-sm;
+}

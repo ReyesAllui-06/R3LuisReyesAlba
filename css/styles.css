@@ -12605,6 +12605,16 @@ input[type=checkbox] {
   text-align: center;
 }
 
+.carrito-imagen {
+  width: 80px;
+  height: 80px;
+  padding: 6px;
+  object-fit: contain;
+  background: #f5f5f5;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+}
+
 .resumen-pedido {
   border: 1px solid #e5e5e5;
 }

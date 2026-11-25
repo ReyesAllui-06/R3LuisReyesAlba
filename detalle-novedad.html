@@ -23,6 +23,7 @@
           <li class="nav-item"><a class="nav-link" href="novedades.html" aria-current="page">Novedades</a></li>
           <li class="nav-item"><a class="nav-link" href="index.html#sobre-nosotros">Sobre nosotros</a></li>
           <li class="nav-item"><a class="nav-link" href="login.html">Entrar</a></li>
+          <li class="nav-item"><a class="nav-link" href="carrito.html">Carrito <span class="badge rounded-pill bg-fitshop ms-1 d-none" data-contador-carrito>0</span></a></li>
         </ul>
       </div>
     </div>
@@ -44,27 +45,11 @@
         <p class="text-secondary" id="descripcion"></p>
         <h2 class="h5 mt-4">¿Qué incluye?</h2>
         <ul id="incluye" class="list-group list-group-flush mb-4"></ul>
-        <button type="button" class="btn btn-fitshop btn-lg fw-bold" data-bs-toggle="modal" data-bs-target="#modalCompra">Comprar pack</button>
+        <button type="button" class="btn btn-fitshop btn-lg fw-bold" id="anadir-pack">Añadir al carrito</button>
       </div>
     </div>
   </main>
 
-  <!-- Modal que avisa de la compra -->
-  <div class="modal fade" id="modalCompra" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">¡Compra realizada!</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body">Gracias por tu compra. Esto es una demostración, no se ha realizado ningún cobro.</div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir mirando</button>
-          <a href="index.html" class="btn btn-fitshop fw-bold">Ir al inicio</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <footer class="pie-pagina">
     <div class="container">
@@ -105,6 +90,13 @@
       li.textContent = item;
       lista.appendChild(li);
     });
+
+    // Añade el pack al carrito y avisa con un toast
+    document.querySelector('#anadir-pack').addEventListener('click', () => {
+      agregarAlCarrito(n, 1);
+      notificar(`${n.nombre} añadido al carrito`);
+    });
   </script>
+  <script src="js/carrito.js"></script>
 </body>
 </html>

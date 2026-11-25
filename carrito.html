@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitShop | Tu carrito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Un unico CSS: Bootstrap 5 compilado con el tema de FitShop desde scss/ (ver npm run css) -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top barra-navegacion">
+    <div class="container">
+      <a class="navbar-brand marca-nav" href="index.html"><img src="img/logo-fitshop.png" alt="Logo FitShop" class="logo-nav" width="48" height="48"><span>FitShop</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-principal" aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir el menú de navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu-principal">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="tienda.html">Tienda</a></li>
+          <li class="nav-item"><a class="nav-link" href="novedades.html">Novedades</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#sobre-nosotros">Sobre nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">Entrar</a></li>
+          <li class="nav-item"><a class="nav-link" href="carrito.html" aria-current="page">Carrito <span class="badge rounded-pill bg-fitshop ms-1 d-none" data-contador-carrito>0</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+    <h1 class="titulo-seccion">Tu carrito</h1>
+
+    <!-- Estado vacío: se muestra si no hay productos -->
+    <div id="carrito-vacio" class="card border-0 shadow-sm p-5 text-center d-none">
+      <h2 class="h4">Tu carrito está vacío</h2>
+      <p class="text-secondary mb-4">Añade productos desde la tienda o desde las novedades.</p>
+      <div class="d-flex gap-2 justify-content-center flex-wrap">
+        <a class="btn btn-fitshop fw-bold" href="tienda.html">Ir a la tienda</a>
+        <a class="btn btn-outline-dark" href="novedades.html">Ver novedades</a>
+      </div>
+    </div>
+
+    <div id="carrito-contenido" class="row g-4 d-none">
+      <div class="col-lg-8">
+        <ul class="list-group shadow-sm" id="lista-carrito" aria-label="Productos en el carrito"></ul>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <a class="link-dark" href="tienda.html">← Seguir comprando</a>
+          <button type="button" class="btn btn-link text-danger p-0" id="vaciar">Vaciar carrito</button>
+        </div>
+      </div>
+
+      <aside class="col-lg-4">
+        <div class="card border-0 shadow-sm p-4 resumen-pedido">
+          <h2 class="h5 mb-3">Resumen</h2>
+          <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item d-flex justify-content-between px-0">
+              <span>Artículos</span><span id="num-articulos">0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between px-0">
+              <span>Subtotal</span><span id="subtotal">0 €</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between px-0">
+              <span>Envío estándar</span><span id="envio" class="gratis">Gratis</span>
+            </li>
+          </ul>
+          <p id="aviso-envio" class="small text-secondary mb-3"></p>
+          <div class="d-flex justify-content-between align-items-center fs-4 fw-bold border-top pt-3 mb-3">
+            <span>Total estimado</span><span id="total">0 €</span>
+          </div>
+          <a class="btn btn-fitshop btn-lg w-100 fw-bold" href="checkout.html">Finalizar compra</a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="pie-pagina">
+    <div class="container">
+      <div class="pie-contenido">
+        <a class="pie-marca" href="index.html"><img src="img/logo-fitshop.png" alt="Logo FitShop"><span>FitShop</span></a>
+        <nav class="pie-enlaces" aria-label="Enlaces del pie de página">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tienda.html">Tienda</a></li>
+            <li><a href="novedades.html">Novedades</a></li>
+            <li><a href="index.html#sobre-nosotros">Sobre nosotros</a></li>
+            <li><a href="login.html">Entrar</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="pie-copy">© 2026 FitShop · Nutrición para cada entrenamiento</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/carrito.js"></script>
+  <script>
+    const contenido = document.querySelector('#carrito-contenido');
+    const vacio = document.querySelector('#carrito-vacio');
+    const lista = document.querySelector('#lista-carrito');
+
+    // Una fila por producto con sus unidades, precio de línea y botones
+    function filaCarrito(l) {
+      const id = escaparHtml(l.id);
+      const nombre = escaparHtml(l.nombre);
+      return `
+        <li class="list-group-item d-flex flex-wrap align-items-center gap-3 py-3">
+          <img src="${escaparHtml(l.imagen)}" alt="" class="carrito-imagen">
+          <div class="flex-grow-1">
+            <a class="fw-bold link-dark" href="${escaparHtml(l.enlace)}">${nombre}</a>
+            <small class="d-block text-secondary">${escaparHtml(l.detalle)}</small>
+            <small class="text-secondary">${formatearEuros(l.precio)} / ud.</small>
+          </div>
+          <div class="btn-group btn-group-sm" role="group" aria-label="Unidades de ${nombre}">
+            <button type="button" class="btn btn-outline-dark" data-accion="menos" data-id="${id}" aria-label="Restar una unidad de ${nombre}">−</button>
+            <span class="btn btn-light disabled" aria-live="polite">${l.cantidad}</span>
+            <button type="button" class="btn btn-outline-dark" data-accion="mas" data-id="${id}" aria-label="Sumar una unidad de ${nombre}" ${l.cantidad >= UNIDADES_MAXIMAS ? 'disabled' : ''}>+</button>
+          </div>
+          <strong class="text-nowrap">${formatearEuros(l.precio * l.cantidad)}</strong>
+          <button type="button" class="btn btn-link text-danger p-0" data-accion="quitar" data-id="${id}" aria-label="Quitar ${nombre} del carrito">Quitar</button>
+        </li>`;
+    }
+
+    function renderCarrito() {
+      const lineas = obtenerCarrito();
+
+      if (!lineas.length) {
+        contenido.classList.add('d-none');
+        vacio.classList.remove('d-none');
+        return;
+      }
+
+      vacio.classList.add('d-none');
+      contenido.classList.remove('d-none');
+      lista.innerHTML = lineas.map(filaCarrito).join('');
+
+      const subtotal = subtotalCarrito();
+      const envio = costeEnvio(subtotal, 'estandar');
+      const unidades = totalArticulos();
+
+      document.querySelector('#num-articulos').textContent = unidades;
+      document.querySelector('#subtotal').textContent = formatearEuros(subtotal);
+      document.querySelector('#envio').textContent = envio === 0 ? 'Gratis' : formatearEuros(envio);
+      document.querySelector('#envio').classList.toggle('gratis', envio === 0);
+      document.querySelector('#total').textContent = formatearEuros(subtotal + envio);
+      document.querySelector('#aviso-envio').textContent = envio === 0
+        ? 'Tu envío estándar es gratis.'
+        : `Te faltan ${formatearEuros(ENVIO_GRATIS_DESDE - subtotal)} para el envío estándar gratis.`;
+    }
+
+    // Botones de cantidad y de quitar (delegación de eventos sobre la lista)
+    lista.addEventListener('click', (e) => {
+      const boton = e.target.closest('button[data-accion]');
+      if (!boton) return;
+
+      const id = boton.dataset.id;
+      const linea = obtenerCarrito().find(l => l.id === id);
+      if (!linea) return;
+
+      if (boton.dataset.accion === 'mas') cambiarCantidad(id, linea.cantidad + 1);
+      if (boton.dataset.accion === 'menos') cambiarCantidad(id, linea.cantidad - 1);
+      if (boton.dataset.accion === 'quitar') quitarDelCarrito(id);
+      renderCarrito();
+    });
+
+    document.querySelector('#vaciar').addEventListener('click', () => {
+      if (confirm('¿Quieres vaciar el carrito?')) {
+        vaciarCarrito();
+        renderCarrito();
+      }
+    });
+
+    renderCarrito();
+  </script>
+</body>
+</html>

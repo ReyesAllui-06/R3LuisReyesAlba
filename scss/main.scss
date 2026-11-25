@@ -38,6 +38,7 @@
 @use 'portada';          // portada con carrusel, secciones, video y sobre nosotros
 @use 'novedades';        // cabecera y tarjetas de novedades
 @use 'producto';         // detalle de producto
+@use 'carrito';         // carrito de la compra
 @use 'checkout';         // pasarela de pago con formularios de Bootstrap
 @use 'pie';              // pie de pagina
 @use 'animaciones';      // animaciones (van al final para poder sobrescribir)
